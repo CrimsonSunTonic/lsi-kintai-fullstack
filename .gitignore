@@ -1,0 +1,10 @@
+# Database
+/db-data/*
+
+# PGAdmin
+/pgadmin-data/*
+/pgadmin4/*
+
+# full stack node modules
+/lsi-kintai-nextjs-frontend
+/lsi-kintai-nestjs-backend
