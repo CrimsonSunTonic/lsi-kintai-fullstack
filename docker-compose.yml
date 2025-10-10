@@ -27,13 +27,6 @@ services:
   server:
     build: ./lsi-kintai-nestjs-backend
     hostname: backend_nestjs
-    environment:
-      DATABASE_URL: "postgresql://devuser:devpass@dev-db:5432/devdb?schema=public"
-      # DATABASE_URL: "postgres://fcfd8b94434d77397984cac7c7aba8ad4bca6ce4583e11fd0e7eb8c7ed7c9a17:sk_SQ8-lNvQbDjPZEH3J1Es8@db.prisma.io:5432/postgres?sslmode=require"
-      JWT_SECRET: "LSI_KINTAI_SECRET_KEY"
-      JWT_EXPIRES_IN: "3600s"
-      FRONTEND_URL: "http://localhost:3000"
-      PORT: "4000"
     volumes:
       - ./lsi-kintai-nestjs-backend:/app
       - /app/node_modules
@@ -47,8 +40,6 @@ services:
   client:
     build: ./lsi-kintai-nextjs-frontend
     hostname: frontend_nextjs
-    environment:
-      NEXT_PUBLIC_API_URL: "http://localhost:4000"
     volumes:
       - ./lsi-kintai-nextjs-frontend:/app
       - /app/node_modules
