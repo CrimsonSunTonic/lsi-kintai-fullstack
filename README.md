@@ -49,7 +49,13 @@ cp ./lsi-kintai-nestjs-backend/.env.dev ./lsi-kintai-nestjs-backend/.env
 cp ./lsi-kintai-nextjs-frontend/.env.dev ./lsi-kintai-nextjs-frontend/.env
 ```
 
-### 5. サーバーを立ち上げる
+### 5. データベースフォルダを作成
+
+```bash
+mkdir db-data
+```
+
+### 6. サーバーを立ち上げる
 
 ```bash
 docker compose up -d --build

@@ -11,7 +11,7 @@ services:
     networks:
       - lsib-network
     volumes:
-      - ./db-data/dev:/var/lib/postgresql/data
+      - ./db-data:/var/lib/postgresql/data
   
   pgadmin:
     image: dpage/pgadmin4
