@@ -43,9 +43,9 @@ services:
   client:
     build: ./lsi-kintai-nextjs-frontend
     hostname: frontend_nextjs
-    volumes:
-      - ./lsi-kintai-nextjs-frontend:/app
-      - /app/node_modules
+    # volumes:
+    #   - ./lsi-kintai-nextjs-frontend:/app
+    #   - /app/node_modules
     expose:
       - "3000"
     ports:
