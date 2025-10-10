@@ -64,3 +64,22 @@ mkdir db-data
 ```bash
 docker compose up -d --build
 ```
+
+## フォルダ構成
+
+```
+lsi-kintai-fullstack/
+├── docker-compose.yml          # 全体構成ファイル
+├── db-data/                    # PostgreSQL 永続化データ
+├── lsi-kintai-nestjs-backend/  # NestJS バックエンド
+│   ├── prisma/                 # Prisma スキーマとマイグレーション
+│   ├── src/                    # ソースコード
+│   ├── .env.dev                # 開発用環境変数ファイル
+│   └── Dockerfile              # バックエンド用 Docker 設定
+├── lsi-kintai-nextjs-frontend/ # Next.js フロントエンド
+│   ├── src/                    # ページやコンポーネント
+│   ├── public/                 # 静的ファイル
+│   ├── .env.example            # 環境変数テンプレート
+│   └── Dockerfile              # フロントエンド用 Docker 設定
+└── README.md                   # このドキュメント
+```
