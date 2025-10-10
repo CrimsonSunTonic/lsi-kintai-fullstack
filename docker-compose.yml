@@ -43,12 +43,24 @@ services:
     volumes:
       - ./lsi-kintai-nextjs-frontend:/app
       - /app/node_modules
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     networks:
       - lsib-network
     depends_on:
       - server
+  www:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - client
+      - server
+    networks:
+      - lsib-network
 
 networks:
   lsib-network:
