@@ -30,8 +30,8 @@ services:
     volumes:
       - ./lsi-kintai-nestjs-backend:/app
       - /app/node_modules
-    ports:
-      - "4000:4000"
+    expose:
+    - "4000" 
     networks:
       - lsib-network
     depends_on:
