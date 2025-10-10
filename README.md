@@ -19,6 +19,8 @@
 
 ```bash
 git clone https://github.com/CrimsonSunTonic/lsi-kintai-fullstack.git
+
+cd lsi-kintai-fullstack
 ```
 
 ### 2. バックエンドをクローン
@@ -39,14 +41,16 @@ git clone https://github.com/CrimsonSunTonic/lsi-kintai-nextjs-frontend.git
 
 ```powershell
 cp .\lsi-kintai-nestjs-backend\.env.dev .\lsi-kintai-nestjs-backend\.env
-cp .\lsi-kintai-nextjs-frontend\.env.dev .\lsi-kintai-nextjs-frontend\.env
+
+cp .\lsi-kintai-nextjs-frontend\.env.example .\lsi-kintai-nextjs-frontend\.env
 ```
 
 #### Linux / macOS
 
 ```bash
 cp ./lsi-kintai-nestjs-backend/.env.dev ./lsi-kintai-nestjs-backend/.env
-cp ./lsi-kintai-nextjs-frontend/.env.dev ./lsi-kintai-nextjs-frontend/.env
+
+cp ./lsi-kintai-nextjs-frontend/.env.example ./lsi-kintai-nextjs-frontend/.env
 ```
 
 ### 5. データベースフォルダを作成
