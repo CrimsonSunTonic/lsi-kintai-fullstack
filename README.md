@@ -62,7 +62,11 @@ mkdir db-data
 ### 6. サーバーを立ち上げる
 
 ```bash
-docker compose up -d --build
+docker compose build client
+
+docker compose build server
+
+docker compose up -d
 ```
 
 ## フォルダ構成
