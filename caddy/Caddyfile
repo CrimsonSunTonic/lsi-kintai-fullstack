@@ -1,0 +1,7 @@
+:80 {
+    encode gzip
+    
+    handle {
+        reverse_proxy frontend_nextjs:3000
+    }
+}

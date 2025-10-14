@@ -32,7 +32,7 @@ services:
       - ./lsi-kintai-nestjs-backend:/app
       - /app/node_modules
     expose:
-    - "4000" 
+      - "4000" 
     ports:
       - "4000:4000"
     networks:
@@ -43,9 +43,9 @@ services:
   client:
     build: ./lsi-kintai-nextjs-frontend
     hostname: frontend_nextjs
-    # volumes:
-    #   - ./lsi-kintai-nextjs-frontend:/app
-    #   - /app/node_modules
+    volumes:
+      - ./lsi-kintai-nextjs-frontend:/app
+      - /app/node_modules
     expose:
       - "3000"
     ports:
@@ -54,13 +54,15 @@ services:
       - lsib-network
     depends_on:
       - server
-  # www:
-  #   image: nginx:latest
-  #   container_name: nginx_proxy
+
+  # caddy:
+  #   image: caddy:latest
+  #   container_name: caddy_proxy
   #   ports:
   #     - "80:80"
+  #     - "443:443"
   #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
   #   depends_on:
   #     - client
   #     - server
