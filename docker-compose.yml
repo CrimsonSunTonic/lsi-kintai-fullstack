@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   dev-db:
     image: postgres:15
@@ -8,33 +10,34 @@ services:
       POSTGRES_DB: devdb
     ports:
       - "5434:5432"
-    networks:
-      - lsib-network
     volumes:
       - ./db-data:/var/lib/postgresql/data
-  
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: admin@email.com
-  #     PGADMIN_DEFAULT_PASSWORD: adminpass
-  #   ports:
-  #     - "8080:80"
-  #   volumes:
-  #     - ./pgadmin4/servers.json:/pgadmin4/servers.json
-  #   networks:
-  #     - lsib-network
+    networks:
+      - lsib-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@email.com
+      PGADMIN_DEFAULT_PASSWORD: adminpass
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pgadmin4/servers.json:/pgadmin4/servers.json
+    depends_on:
+      - dev-db
+    networks:
+      - lsib-network
 
   server:
     build: ./lsi-kintai-nestjs-backend
-    hostname: backend_nestjs
+    container_name: backend_nestjs
     volumes:
       - ./lsi-kintai-nestjs-backend:/app
       - /app/node_modules
     expose:
-      - "4000" 
-    ports:
-      - "4000:4000"
+      - "4000"
     networks:
       - lsib-network
     depends_on:
@@ -42,32 +45,30 @@ services:
 
   client:
     build: ./lsi-kintai-nextjs-frontend
-    hostname: frontend_nextjs
+    container_name: frontend_nextjs
     volumes:
       - ./lsi-kintai-nextjs-frontend:/app
       - /app/node_modules
     expose:
       - "3000"
-    ports:
-      - "3000:3000"
     networks:
       - lsib-network
     depends_on:
       - server
 
-  # caddy:
-  #   image: caddy:latest
-  #   container_name: caddy_proxy
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-  #   depends_on:
-  #     - client
-  #     - server
-  #   networks:
-  #     - lsib-network
+  caddy:
+    image: caddy:latest
+    container_name: caddy_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - client
+      - server
+    networks:
+      - lsib-network
 
 networks:
   lsib-network:
