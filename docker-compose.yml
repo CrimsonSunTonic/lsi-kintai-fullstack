@@ -23,7 +23,7 @@ services:
       DATABASE_URL: "postgresql://devuser:devpass@dev-db:5432/devdb?schema=public"
       JWT_SECRET: "LSI_KINTAI_SECRET_KEY"
       JWT_EXPIRES_IN: "3600s"
-      FRONTEND_URL: "http://frontend_nextjs:3000"
+      FRONTEND_URLS: "http://localhost:5001,http://192.168.3.4:5001"
       PORT: 4000
     expose:
       - "4000"
@@ -39,7 +39,7 @@ services:
       - ./lsi-kintai-nextjs-frontend:/app
       - /app/node_modules
     environment:
-      NEXT_PUBLIC_API_URL: "http://localhost:5001/api"
+      NEXT_PUBLIC_API_URL: "http://192.168.3.4:5001/api"
       IP_HOST_URL: "http://192.168.3.4:3000"
     expose:
       - "3000"
@@ -49,7 +49,7 @@ services:
       - backend_nestjs
 
   nginx_proxy:
-    image: nginx:latest
+    image: nginx:alpine
     container_name: lsi-kintai-crimson-sun
     ports:
       - "5001:5001"
